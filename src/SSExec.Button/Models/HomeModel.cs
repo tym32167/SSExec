@@ -7,4 +7,4 @@ namespace SSExec.Button.Models
     {
         public IEnumerable<ProcessInfoView> ProcessInfoViews { get; set; }
     }
-}
+} 
