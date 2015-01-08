@@ -1,0 +1,78 @@
+﻿@model SSExec.Button.Models.HomeModel
+
+@{
+    ViewBag.Title = "Управление процессами";
+
+}
+
+<div class="jumbotron">
+    <h1>Рестарт процессов</h1>
+    <p class="lead">С помощью кнопок ниже можно попробовать произвести рестарт заранее установленного процесса. Будьте аккурентей, жмите один раз и не переусердствуйте!</p>
+
+
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Процесс</th>
+                    <th>Дата запуска</th>
+                    <th>Кем зпущен</th>
+                    <th>Статус</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ProcessInfoViews)
+                {
+                    <tr>
+                        <td>
+                            @item.Title
+                        </td>
+
+                        <td>
+                            @item.LastRestarted
+                        </td>
+
+                        <td>
+                            @item.LastRestartedBy
+                        </td>
+
+                        @if (item.Active)
+                        {
+                            <td style="width: 1px;" class="bg-success">
+                                Активно
+                            </td>
+                        }
+                        else
+                        {
+                            <td style="width: 1px;" class="bg-warning">
+                                Отключено
+                            </td>
+                        }
+
+                        <td style="width: 1px;">
+                            @using (Html.BeginForm("Stop", "Home"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("filename", item.FilePath)
+                                <input type="submit" value="Стоп" onclick="return confirm('Уверены?');" class="btn btn-danger btn-xs" />
+                            }
+                        </td>
+                        <td style="width: 1px;">
+                            @using (Html.BeginForm("Start", "Home"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("filename", item.FilePath)
+                                <input type="submit" value="Старт" onclick="return confirm('Уверены?');" class="btn btn-success btn-xs" />
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

@@ -1,0 +1,49 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - TEHGAM.COM</title>
+    <meta name="viewport" content="width=device-width" />
+    @*@Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap")*@
+    
+    
+    @Styles.Render("~/Content/all")
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Управление", "Index", "Home", new { }, new { @class = "navbar-brand" })
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav navbar-right">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+        <footer>
+            <p >&copy; @DateTime.Now.Year - <a href="http://tehgam.com">TEHGAM.COM</a></p>
+        </footer>
+    </div>
+    
+    @*@Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")*@
+    
+    @Scripts.Render("~/Scripts/all")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
