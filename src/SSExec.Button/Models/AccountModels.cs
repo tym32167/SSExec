@@ -27,7 +27,7 @@ namespace SSExec.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Повторить пароль")]
-        [Compare("NewPassword", ErrorMessage = "Пароли не совпадают")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -60,7 +60,7 @@ namespace SSExec.Web.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Повторить пароль")]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
 
 
