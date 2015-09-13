@@ -22,13 +22,13 @@ namespace SSExec.Button.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         public ActionResult AddUser()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddUser(LoginModel model)
