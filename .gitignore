@@ -185,3 +185,4 @@ FakesAssemblies/
 #special
 Logs/
 App_Data/
+src/.vs/
