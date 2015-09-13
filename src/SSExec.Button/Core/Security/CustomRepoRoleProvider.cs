@@ -1,10 +1,23 @@
-﻿namespace SSExec.Button.Core.Security
+﻿using System.Linq;
+using System.Web;
+using SSExec.Button.Core.Data;
+using SSExec.Button.Core.Data.Contract;
+
+namespace SSExec.Button.Core.Security
 {
-    public class RoleProvider : System.Web.Security.RoleProvider
+    public class CustomRepoRoleProvider : System.Web.Security.RoleProvider
     {
+        private readonly IRepository<XmlUser, string> _userRepository;
+
+        public CustomRepoRoleProvider()
+        {
+            _userRepository = new SingleFileRepository<XmlUser, string>(HttpContext.Current.Server.MapPath(@"~\App_Data\users.xml"));
+        }
+
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new System.NotImplementedException();
+            var user = _userRepository.Get(username);
+            return user?.Roles?.Any(x => string.CompareOrdinal(x.Name, roleName) == 0) ?? false;
         }
 
         public override string[] GetRolesForUser(string username)

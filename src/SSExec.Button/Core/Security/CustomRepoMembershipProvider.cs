@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using System.Web.Security;
-using System.Xml.Serialization;
 using SSExec.Button.Core.Data;
 using SSExec.Button.Core.Data.Contract;
 
@@ -134,18 +133,5 @@ namespace SSExec.Button.Core.Security
         {
             throw new NotImplementedException();
         }
-    }
-
-
-    [Serializable]
-    public class XmlUser : IEntity<string>
-    {
-        [XmlAttribute]
-        public string Id { get; set; }
-
-        [XmlAttribute]
-        public string Name { get; set; }
-        [XmlAttribute]
-        public string Password { get; set; }
     }
 }

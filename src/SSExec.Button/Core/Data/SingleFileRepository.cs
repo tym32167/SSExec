@@ -9,12 +9,23 @@ namespace SSExec.Button.Core.Data
     public class SingleFileRepository<T, TKey> : BaseRepository<T, TKey> where T : IEntity<TKey>, new()
     {
         private readonly string _fileName;
-        private List<T> _cache;
+        private static List<T> _cache;
+
+        private List<T> Cache
+        {
+            get
+            {
+                if (_cache == null)
+                    _cache = ReadCache(_fileName);
+                return _cache;
+            }
+            set { _cache = value; }
+        }
 
         public SingleFileRepository(string fileName)
         {
             _fileName = fileName;
-            _cache = ReadCache(_fileName);
+            
         }
 
         private List<T> ReadCache(string filename)
@@ -23,8 +34,8 @@ namespace SSExec.Button.Core.Data
 
             using (var sr = new StreamReader(filename))
             {
-                var ser = new XmlSerializer(typeof (List<T>));
-                return (List<T>) ser.Deserialize(sr);
+                var ser = new XmlSerializer(typeof(List<T>));
+                return (List<T>)ser.Deserialize(sr);
             }
         }
 
@@ -34,7 +45,7 @@ namespace SSExec.Button.Core.Data
 
             using (var sw = new StreamWriter(filename, false))
             {
-                var ser = new XmlSerializer(typeof (List<T>));
+                var ser = new XmlSerializer(typeof(List<T>));
                 ser.Serialize(sw, cache);
             }
         }
@@ -42,30 +53,30 @@ namespace SSExec.Button.Core.Data
 
         public override IEnumerable<T> All()
         {
-            return _cache;
+            return Cache;
         }
 
         public override void Delete(T item)
         {
-            _cache = _cache.Where(x => !x.Id.Equals(item.Id)).ToList();
-            WriteCache(_fileName, _cache);
+            Cache = Cache.Where(x => !x.Id.Equals(item.Id)).ToList();
+            WriteCache(_fileName, Cache);
         }
 
         public override T Update(T item)
         {
-            var el = _cache.SingleOrDefault(x => x.Id.Equals(item.Id));
+            var el = Cache.SingleOrDefault(x => x.Id.Equals(item.Id));
             if (el == null) return default(T);
-            _cache.Remove(el);
-            _cache.Add(item);
-            WriteCache(_fileName, _cache);
+            Cache.Remove(el);
+            Cache.Add(item);
+            WriteCache(_fileName, Cache);
             return item;
         }
 
         public override T Add(T item)
         {
-            _cache = _cache.Where(x => !x.Id.Equals(item.Id)).ToList();
-            _cache.Add(item);
-            WriteCache(_fileName, _cache);
+            Cache = Cache.Where(x => !x.Id.Equals(item.Id)).ToList();
+            Cache.Add(item);
+            WriteCache(_fileName, Cache);
             return item;
         }
     }

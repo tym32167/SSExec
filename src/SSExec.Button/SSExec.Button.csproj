@@ -179,7 +179,8 @@
     <Compile Include="Core\NinjectDependencyResolver.cs" />
     <Compile Include="Core\ProcessHelper.cs" />
     <Compile Include="Core\Security\CustomRepoMembershipProvider.cs" />
-    <Compile Include="Core\Security\RoleProvider.cs" />
+    <Compile Include="Core\Security\CustomRepoRoleProvider.cs" />
+    <Compile Include="Core\Security\XmlUser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
