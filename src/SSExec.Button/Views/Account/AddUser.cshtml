@@ -1,0 +1,32 @@
+﻿@using System.Web.Optimization
+@model SSExec.Web.Models.LoginModel
+
+@{
+    ViewBag.Title = "Регистрация пользователя";
+}
+
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-signin" role="form">
+        <h2 class="form-signin-heading">Добавить юзера</h2>
+
+        @Html.LabelFor(m => m.UserName, new { @class = "sr-only" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.UserName) })
+        @Html.ValidationMessageFor(m => m.UserName)
+
+        @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
+        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(x => x.Password) })
+        @Html.ValidationMessageFor(m => m.Password)
+
+        @Html.ValidationSummary(true)
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Добавить</button>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jqueryval")
+}

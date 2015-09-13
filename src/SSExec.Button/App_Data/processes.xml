@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfProcessInfoXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ProcessInfoXml Title="Блокнот" FilePath="C:\Windows\System32\notepad.exe" ProcessName="notepad" LastRestarted="2015-01-08T05:54:12.5924357+05:00" LastRestartedBy="Username" />
+  <ProcessInfoXml Title="Блокнот" FilePath="C:\Windows\System32\notepad.exe" ProcessName="notepad" LastRestarted="2015-09-10T21:09:54.0877451+05:00" LastRestartedBy="Username" />
   <ProcessInfoXml Title="Командная строка" FilePath="C:\WINDOWS\system32\cmd.exe" ProcessName="cmd" LastRestarted="2014-12-02T23:48:26.4353508+05:00" LastRestartedBy="tym32167" />
   <ProcessInfoXml Title="Арма сервер" FilePath="D:\Arma3\Server\RW2\arma3server.exe" Arguments=" -port=2302 +net_allow_multicast 0 -config=RW2\config.cfg -cfg=RW2\Arma3.cfg -profiles=RW2 -name=RW2" ProcessName="arma3server" LastRestarted="2014-12-02T16:26:36.6732706+05:00" LastRestartedBy="by" />
 </ArrayOfProcessInfoXml>
