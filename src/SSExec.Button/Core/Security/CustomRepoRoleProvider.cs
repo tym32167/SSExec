@@ -17,7 +17,7 @@ namespace SSExec.Button.Core.Security
         public override bool IsUserInRole(string username, string roleName)
         {
             var user = _userRepository.Get(username);
-            return user?.Roles?.Any(x => string.CompareOrdinal(x.Name, roleName) == 0) ?? false;
+            return user?.Roles?.Any(x => string.CompareOrdinal(x, roleName) == 0) ?? false;
         }
 
         public override string[] GetRolesForUser(string username)

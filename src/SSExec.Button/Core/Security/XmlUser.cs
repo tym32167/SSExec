@@ -16,13 +16,6 @@ namespace SSExec.Button.Core.Security
         [XmlAttribute]
         public string Password { get; set; }
 
-        public XmlUserRole[] Roles { get; set; }
-    }
-
-    [Serializable]
-    public class XmlUserRole
-    {
-        [XmlAttribute]
-        public string Name { get; set; }
+        public string[] Roles { get; set; }
     }
 }

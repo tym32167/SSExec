@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -11,12 +12,17 @@ namespace SSExec.Button.Core.Data
         private readonly string _fileName;
         private static List<T> _cache;
 
+        private static DateTime CacheLoadTime = DateTime.MinValue;
+
         private List<T> Cache
         {
             get
             {
-                if (_cache == null)
+                if (_cache == null || (DateTime.UtcNow - CacheLoadTime).Seconds > 0)
+                {
                     _cache = ReadCache(_fileName);
+                    CacheLoadTime = DateTime.UtcNow;
+                }
                 return _cache;
             }
             set { _cache = value; }
