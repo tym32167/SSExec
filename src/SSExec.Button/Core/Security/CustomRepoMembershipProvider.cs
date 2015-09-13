@@ -99,7 +99,15 @@ namespace SSExec.Button.Core.Security
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            throw new NotImplementedException();
+            var user = _userRepository.Get(username);
+            if (user == null) return null;
+            return new MembershipUser("CustomRepoMembershipProvider",
+                username, user.Name, string.Empty,
+                string.Empty, string.Empty,
+                true, false, DateTime.MinValue,
+                DateTime.MinValue,
+                DateTime.MinValue,
+                DateTime.Now, DateTime.Now);
         }
 
         public override string GetUserNameByEmail(string email)

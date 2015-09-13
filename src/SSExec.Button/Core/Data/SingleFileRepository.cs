@@ -47,8 +47,6 @@ namespace SSExec.Button.Core.Data
 
         private void WriteCache(string filename, List<T> cache)
         {
-            if (File.Exists(filename)) File.Create(filename);
-
             using (var sw = new StreamWriter(filename, false))
             {
                 var ser = new XmlSerializer(typeof(List<T>));

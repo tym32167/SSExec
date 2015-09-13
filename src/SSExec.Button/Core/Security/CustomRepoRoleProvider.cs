@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using SSExec.Button.Core.Data;
 using SSExec.Button.Core.Data.Contract;
@@ -22,7 +23,7 @@ namespace SSExec.Button.Core.Security
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new System.NotImplementedException();
+            return _userRepository.Get(username)?.Roles ?? new string[0];
         }
 
         public override void CreateRole(string roleName)
@@ -42,7 +43,18 @@ namespace SSExec.Button.Core.Security
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
         {
-            throw new System.NotImplementedException();
+            foreach (var name in usernames)
+            {
+                var user = _userRepository.Get(name);
+                if (user != null)
+                {
+                    var roles = new List<string>();
+                    roles.AddRange(roleNames);
+                    if (user.Roles != null) roles.AddRange(user.Roles);
+                    user.Roles = roles.ToArray();
+                    _userRepository.Update(user);
+                }
+            }
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
