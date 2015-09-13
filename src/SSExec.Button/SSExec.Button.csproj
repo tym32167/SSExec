@@ -166,11 +166,18 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\BaseController.cs" />
+    <Compile Include="Core\Data\BaseRepository.cs" />
+    <Compile Include="Core\Data\Contract\IEntity.cs" />
+    <Compile Include="Core\Data\Contract\IRepository.cs" />
+    <Compile Include="Core\Data\FileBasedRepository.cs" />
+    <Compile Include="Core\Data\MultRepository.cs" />
+    <Compile Include="Core\DisposeObject.cs" />
     <Compile Include="Core\ILog.cs" />
     <Compile Include="Core\Log.cs" />
     <Compile Include="Core\LoggingFilter.cs" />
     <Compile Include="Core\NinjectDependencyResolver.cs" />
     <Compile Include="Core\ProcessHelper.cs" />
+    <Compile Include="Core\Security\XmlMembershipProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

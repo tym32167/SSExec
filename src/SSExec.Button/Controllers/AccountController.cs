@@ -28,7 +28,7 @@ namespace SSExec.Button.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
 
-            if (ModelState.IsValid && FormsAuthentication.Authenticate(model.UserName, model.Password))
+            if (ModelState.IsValid && Membership.ValidateUser(model.UserName, model.Password))
             {
                 FormsAuthentication.RedirectFromLoginPage(model.UserName, false);
                 return RedirectToLocal(returnUrl);
