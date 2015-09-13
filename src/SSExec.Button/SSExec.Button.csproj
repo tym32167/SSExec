@@ -171,6 +171,7 @@
     <Compile Include="Core\Data\Contract\IRepository.cs" />
     <Compile Include="Core\Data\FileBasedRepository.cs" />
     <Compile Include="Core\Data\MultRepository.cs" />
+    <Compile Include="Core\Data\SingleFileRepository.cs" />
     <Compile Include="Core\DisposeObject.cs" />
     <Compile Include="Core\ILog.cs" />
     <Compile Include="Core\Log.cs" />

@@ -1,4 +1,6 @@
-﻿namespace SSExec.Button.Core.Data.Contract
+﻿using System;
+
+namespace SSExec.Button.Core.Data.Contract
 {
     public interface IEntity<out TKey> : IEntity
     {
